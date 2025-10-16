@@ -2,7 +2,7 @@ addMap("./img/dead _forest.png");
 
 let character = new GameObject(
   "./img/crusader/Idle/0_Skeleton_Crusader_Idle_000.png",
-  200,
+  1000,
   750,
   200
 );
@@ -18,14 +18,19 @@ character.isColliding(function(zombie) {
 
 spawnZombie();
 function spawnZombie() {
+  const fromLeft = Math.random() < 0.5;
   let zombie = new GameObject("./img/Zombie/Walk.png");
   zombie.height = 300;
-  zombie.direction = -1;
-  zombie.x = 1000;
+  zombie.direction = fromLeft ? 1 : -1;
+  zombie.x = fromLeft ? -300 : window.innerWidth + 100;
   zombie.y = 615;
   zombie.collisionOffsetX = 100;
   //zombie.showBorder();
-  zombie.runLeft(3);
+  if (fromLeft) {
+    zombie.runRight(3);
+  } else {
+    zombie.runLeft(3);
+  }
   zombie.animateSpriteSheet(10, 100);
 
   setTimeout(spawnZombie, Math.random() * 5000);

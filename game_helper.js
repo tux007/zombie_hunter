@@ -234,8 +234,24 @@ class GameObject {
     }
 
 
+    runRight(speed = 2) {
+        if (this.runInterval) cancelAnimationFrame(this.runInterval); // Stoppe vorherige Bewegung
+
+        const update = () => {
+            if (gameOver) return;
+
+            this.x += speed; // Bewege das Objekt nach rechts
+            this.imgElement.style.left = `${this.x}px`;
+
+            this.runInterval = requestAnimationFrame(update); // Nächste Bewegung
+        };
+
+        this.runInterval = requestAnimationFrame(update);
+    }
+
+
     flyAway(initialSpeedX = 20, initialSpeedY = 25, rotationSpeed = 10) {
-        if (this.runInterval) clearInterval(this.runInterval); // Stoppe das Laufen
+        if (this.runInterval) cancelAnimationFrame(this.runInterval); // Stoppe das Laufen
 
         let angle = 0;
         let gravity = 0.3; // Weniger starke Schwerkraft für sanfteren Flug
