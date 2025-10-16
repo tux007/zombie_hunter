@@ -17,6 +17,7 @@ document.addEventListener('keyup', e => {
     if (e.keyCode === 37) leftKeyReleased(); // Links-Taste losgelassen
     if (e.keyCode === 39) rightKeyReleased(); // Rechts-Taste losgelassen
     if (e.keyCode === 32) spaceKeyReleased(); // Leertaste losgelassen
+    if (e.keyCode === 38) upKeyReleased(); // Hoch-Taste losgelassen
 });
 
 
@@ -42,6 +43,10 @@ function spaceKeyPressed() {
 
 function spaceKeyReleased() {
     console.log('Please implement the function spaceKeyReleased()');
+}
+
+function upKeyReleased() {
+    console.log('Please implement the function upKeyReleased()');
 }
 
 function addMap(src, parts = 10) {

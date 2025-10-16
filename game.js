@@ -10,10 +10,10 @@ character.animate(0, 17, 50);
 character.collisionOffsetX = 40;
 //character.showBorder();
 
-character.isColliding(function(zombie) {
-    if (character.isAttacking) {
-      zombie.flyAway(15, 10, 15);
-    }
+character.isColliding(function (zombie) {
+  if (character.isAttacking) {
+    zombie.flyAway(15, 10, 15);
+  }
 });
 
 spawnZombie();
@@ -80,6 +80,24 @@ function leftKeyPressed() {
 }
 
 function leftKeyReleased() {
+  character.img = "./img/crusader/Idle/0_Skeleton_Crusader_Idle_000.png";
+  character.animate(0, 17, 50);
+}
+
+function upKeyPressed() {
+  if (character.isJumping) return;
+
+  character.animateOnce(
+    "./img/crusader/Jump Start/0_Skeleton_Crusader_Jump Start_000.png",
+    0,
+    5,
+    60
+  );
+
+  character.jump(250, 8);
+}
+
+function upKeyReleased() {
   character.img = "./img/crusader/Idle/0_Skeleton_Crusader_Idle_000.png";
   character.animate(0, 17, 50);
 }
